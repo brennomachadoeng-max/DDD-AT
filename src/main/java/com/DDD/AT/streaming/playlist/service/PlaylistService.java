@@ -26,35 +26,49 @@ public class PlaylistService {
     public PlaylistResponse criarPlaylist(PlaylistRequest request) {
         return playlistParaPlaylistResponse(registrarPlaylist(playlistRequestParaPlaylist(request)));
     }
+
+    public void criarPlaylistFavoritosParaUsuario(Long usuarioId) {
+        Playlist playlistFavoritos = Playlist.criarPlaylistFavoritos(usuarioId);
+        registrarPlaylist(playlistFavoritos);
+    }
+
     public PlaylistResponse inicializarFavoritos(Long usuarioId) {
         return playlistParaPlaylistResponse(registrarPlaylist(Playlist.criarPlaylistFavoritos(usuarioId)));
     }
+
     public Playlist registrarPlaylist(Playlist playlist) {
         return playlistRepository.save(playlist);
     }
+
     public PlaylistResponse adicionarMusicaNaPlaylist(Long playlistId, Long musicaId) {
         Playlist playlist = encontrarMusicaPlaylist(playlistId);
         playlist.adicionarMusica(musicaService.selecionarPorId(musicaId));
         return playlistParaPlaylistResponse(registrarPlaylist(playlist));
     }
+
     public PlaylistResponse removerMusicaDaPlaylist(Long playlistId, Long musicaId) {
         Playlist playlist = encontrarMusicaPlaylist(playlistId);
         playlist.removerMusica(musicaService.selecionarPorId(musicaId));
         return playlistParaPlaylistResponse(registrarPlaylist(playlist));
     }
+
     public Playlist encontrarMusicaPlaylist(Long playlistId) {
-        return playlistRepository.encontrarPorIdComMusicas(playlistId).orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
+        return playlistRepository.encontrarPorIdComMusicas(playlistId)
+                .orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
     }
+
     public Playlist selecionarPorId(Long id) {
-        return playlistRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
+        return playlistRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
     }
+
     public PlaylistResponse playlistParaPlaylistResponse(Playlist playlist) {
         List<MusicaResponse> musicasDto = playlist.getMusicas().stream()
                 .map(musica -> new MusicaResponse(
                         musica.getId(),
                         musica.getTitulo(),
                         musica.getArtista(),
-                        musica.getDuracaoSegundos()
+                        musica.getDuracao()
                 ))
                 .collect(Collectors.toList());
 
@@ -66,6 +80,7 @@ public class PlaylistService {
                 musicasDto
         );
     }
+
     public Playlist playlistRequestParaPlaylist(PlaylistRequest request) {
         return new Playlist(
                 request.getNome(),

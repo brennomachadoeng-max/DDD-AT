@@ -1,6 +1,5 @@
 package com.DDD.AT.usuario.controller;
 
-import com.DDD.AT.usuario.dto.UsuarioRequest;
 import com.DDD.AT.usuario.dto.UsuarioResponse;
 import com.DDD.AT.usuario.service.UsuarioService;
 import org.springframework.http.HttpStatus;
@@ -15,11 +14,6 @@ public class UsuarioController {
 
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
-    }
-
-    @PostMapping
-    public ResponseEntity<UsuarioResponse> cadastrarUsuario(@RequestBody UsuarioRequest usuarioRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.criarConta(usuarioRequest));
     }
 
     @GetMapping("/{id}")

@@ -20,16 +20,15 @@ public class Musica {
     @Column(nullable = false)
     private String artista;
 
-    @Column(nullable = false)
-    private Integer duracaoSegundos;
+    @Embedded
+    private Duracao duracao;
 
     public Musica(String titulo, String artista, Integer duracaoSegundos) {
         if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException("O título da música é obrigatório.");
         if (artista == null || artista.isBlank()) throw new IllegalArgumentException("O artista da música é obrigatório.");
-        if (duracaoSegundos == null || duracaoSegundos <= 0) throw new IllegalArgumentException("A duração deve ser maior que zero segundos.");
 
         this.titulo = titulo.trim();
         this.artista = artista.trim();
-        this.duracaoSegundos = duracaoSegundos;
+        this.duracao = new Duracao(duracaoSegundos);
     }
 }

@@ -47,7 +47,7 @@ public class MusicaService {
                 musica.getId(),
                 musica.getTitulo(),
                 musica.getArtista(),
-                musica.getDuracaoSegundos()
+                musica.getDuracao()
         );
     }
 }

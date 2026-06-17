@@ -43,11 +43,10 @@ public class Playlist {
 
     public static Playlist criarPlaylistFavoritos(Long usuarioId) {
         if (usuarioId == null) throw new IllegalArgumentException("A playlist deve pertencer a um usuário válido.");
-
         Playlist favoritos = new Playlist();
-        favoritos.nome = "Músicas Curtidas"; // Nome padrão estilo Spotify
+        favoritos.nome = "Músicas Curtidas";
         favoritos.usuarioId = usuarioId;
-        favoritos.favorito = true; // Flag ativada
+        favoritos.favorito = true;
         return favoritos;
     }
 

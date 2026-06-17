@@ -26,7 +26,7 @@ public class CartaoCreditoService {
     }
     public CartaoCreditoResponse ativar(Long id) {
         CartaoCredito cartaoCredito = selecionarPorId(id);
-        cartaoCredito.activar();
+        cartaoCredito.ativar();
         return cartaoCreditoParaCartaoCreditoResponse(cartaoCreditoRepository.save(cartaoCredito));
     }
     public CartaoCreditoResponse desativar(Long id) {
