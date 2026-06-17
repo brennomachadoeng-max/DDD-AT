@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "transacoes")
 @Getter
-@NoArgsConstructor // Exigido pelo JPA
+@NoArgsConstructor
 public class Transacao {
 
     @Id

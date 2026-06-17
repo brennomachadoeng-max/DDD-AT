@@ -26,27 +26,21 @@ public class CartaoCreditoController {
     @GetMapping("/{id}")
     public ResponseEntity<CartaoCreditoResponse> buscarPorId(@PathVariable Long id) {
         CartaoCreditoResponse response = cartaoCreditoService.buscarPorId(id);
-        if (response == null) {
-            return ResponseEntity.notFound().build();
-        }
+        if (response == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(response);
     }
 
     @PatchMapping("/{id}/ativar")
     public ResponseEntity<CartaoCreditoResponse> ativar(@PathVariable Long id) {
         CartaoCreditoResponse response = cartaoCreditoService.ativar(id);
-        if (response == null) {
-            return ResponseEntity.notFound().build();
-        }
+        if (response == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(response);
     }
 
     @PatchMapping("/{id}/desativar")
     public ResponseEntity<CartaoCreditoResponse> desativar(@PathVariable Long id) {
         CartaoCreditoResponse response = cartaoCreditoService.desativar(id);
-        if (response == null) {
-            return ResponseEntity.notFound().build();
-        }
+        if (response == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(response);
     }
 }

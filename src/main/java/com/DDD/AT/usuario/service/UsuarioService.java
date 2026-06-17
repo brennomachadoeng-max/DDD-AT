@@ -6,8 +6,6 @@ import com.DDD.AT.usuario.modal.Usuario;
 import com.DDD.AT.usuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-
 @Service
 public class UsuarioService {
 

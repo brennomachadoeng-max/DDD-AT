@@ -15,9 +15,7 @@ public class TransacaoService {
     private final CartaoCreditoService cartaoCreditoService;
     private final ValidadorTransacaoService validadorTransacaoService;
 
-    public TransacaoService(TransacaoRepository transacaoRepository,
-                            CartaoCreditoService cartaoCreditoService,
-                            ValidadorTransacaoService validadorTransacaoService) {
+    public TransacaoService(TransacaoRepository transacaoRepository, CartaoCreditoService cartaoCreditoService, ValidadorTransacaoService validadorTransacaoService) {
         this.transacaoRepository = transacaoRepository;
         this.cartaoCreditoService = cartaoCreditoService;
         this.validadorTransacaoService = validadorTransacaoService;
@@ -28,8 +26,7 @@ public class TransacaoService {
         if (cartao == null) throw new IllegalArgumentException("Cartão de crédito não encontrado.");
         Transacao novaTransacao = transacaoRequestParaTransacao(request, cartao);
         validadorTransacaoService.verificar(novaTransacao);
-        Transacao transacaoSalva = registrarTransacao(novaTransacao);
-        return transacaoParaTransacaoResponse(transacaoSalva);
+        return transacaoParaTransacaoResponse(registrarTransacao(novaTransacao));
     }
 
     public Transacao registrarTransacao(Transacao transacao) {

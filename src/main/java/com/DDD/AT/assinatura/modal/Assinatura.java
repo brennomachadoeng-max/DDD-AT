@@ -34,15 +34,9 @@ public class Assinatura {
     private boolean ativa;
 
     public Assinatura(Long usuarioId, Plano plano) {
-        if (usuarioId == null) {
-            throw new IllegalArgumentException("A assinatura deve pertencer a um usuário válido.");
-        }
-        if (plano == null) {
-            throw new IllegalArgumentException("A assinatura deve estar vinculada a um plano válido.");
-        }
-        if (!plano.isAtivo()) {
-            throw new IllegalStateException("Não é possível assinar um plano que está desativado.");
-        }
+        if (usuarioId == null) throw new IllegalArgumentException("A assinatura deve pertencer a um usuário válido.");
+        if (plano == null) throw new IllegalArgumentException("A assinatura deve estar vinculada a um plano válido.");
+        if (!plano.isAtivo()) throw new IllegalStateException("Não é possível assinar um plano que está desativado.");
 
         this.usuarioId = usuarioId;
         this.plano = plano;

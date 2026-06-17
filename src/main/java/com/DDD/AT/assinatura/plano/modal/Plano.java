@@ -29,20 +29,14 @@ public class Plano {
     private boolean ativo;
 
     public Plano(String nome, String description, BigDecimal valor) {
-        if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("O nome do plano é obrigatório.");
-        }
-        if (description == null || description.isBlank()) {
-            throw new IllegalArgumentException("A descrição do plano é obrigatória.");
-        }
-        if (valor == null || valor.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("O valor do plano não pode ser negativo.");
-        }
+        if (nome == null || nome.isBlank()) throw new IllegalArgumentException("O nome do plano é obrigatório.");
+        if (description == null || description.isBlank()) throw new IllegalArgumentException("A descrição do plano é obrigatória.");
+        if (valor == null || valor.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("O valor do plano não pode ser negativo.");
 
         this.nome = nome.trim();
         this.descricao = description.trim();
         this.valor = valor;
-        this.ativo = true; // Todo plano nasce ativo por padrão
+        this.ativo = true;
     }
 
     public void desativar() {
@@ -54,9 +48,7 @@ public class Plano {
     }
 
     public void atualizarValor(BigDecimal novoValor) {
-        if (novoValor == null || novoValor.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("O novo valor do plano não pode ser negativo.");
-        }
+        if (novoValor == null || novoValor.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("O novo valor do plano não pode ser negativo.");
         this.valor = novoValor;
     }
 }

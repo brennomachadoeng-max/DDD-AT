@@ -20,8 +20,6 @@ public class CadastroUsuarioOrquestradorController {
 
     @PostMapping("/cadastro")
     public ResponseEntity<UsuarioResponse> cadastrar(@RequestBody UsuarioRequest request) {
-        UsuarioResponse response = cadastroUsuarioOrquestradorService.cadastrarUsuarioComFavoritos(request);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(cadastroUsuarioOrquestradorService.cadastrarUsuarioComFavoritos(request));
     }
 }

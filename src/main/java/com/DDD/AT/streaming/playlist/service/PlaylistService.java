@@ -1,7 +1,6 @@
 package com.DDD.AT.streaming.playlist.service;
 
 import com.DDD.AT.streaming.musica.dto.MusicaResponse;
-import com.DDD.AT.streaming.musica.modal.Musica;
 import com.DDD.AT.streaming.musica.service.MusicaService;
 import com.DDD.AT.streaming.playlist.dto.PlaylistRequest;
 import com.DDD.AT.streaming.playlist.dto.PlaylistResponse;
@@ -27,11 +26,6 @@ public class PlaylistService {
         return playlistParaPlaylistResponse(registrarPlaylist(playlistRequestParaPlaylist(request)));
     }
 
-    public void criarPlaylistFavoritosParaUsuario(Long usuarioId) {
-        Playlist playlistFavoritos = Playlist.criarPlaylistFavoritos(usuarioId);
-        registrarPlaylist(playlistFavoritos);
-    }
-
     public PlaylistResponse inicializarFavoritos(Long usuarioId) {
         return playlistParaPlaylistResponse(registrarPlaylist(Playlist.criarPlaylistFavoritos(usuarioId)));
     }
@@ -53,13 +47,11 @@ public class PlaylistService {
     }
 
     public Playlist encontrarMusicaPlaylist(Long playlistId) {
-        return playlistRepository.encontrarPorIdComMusicas(playlistId)
-                .orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
+        return playlistRepository.encontrarPorIdComMusicas(playlistId).orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
     }
 
     public Playlist selecionarPorId(Long id) {
-        return playlistRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
+        return playlistRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Playlist não encontrada com o ID fornecido."));
     }
 
     public PlaylistResponse playlistParaPlaylistResponse(Playlist playlist) {

@@ -50,7 +50,6 @@ public class Playlist {
         return favoritos;
     }
 
-
     public void adicionarMusica(Musica musica) {
         if (musica == null) throw new IllegalArgumentException("Não é possível adicionar uma música nula.");
         if (this.musicas.contains(musica)) {

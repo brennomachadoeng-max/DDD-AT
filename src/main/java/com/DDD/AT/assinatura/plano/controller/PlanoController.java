@@ -21,13 +21,11 @@ public class PlanoController {
 
     @PostMapping
     public ResponseEntity<PlanoResponse> criarPlano(@RequestBody PlanoRequest request) {
-        PlanoResponse response = planoService.criarPlano(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(planoService.criarPlano(request));
     }
 
     @GetMapping
     public ResponseEntity<List<PlanoResponse>> listarTodos() {
-        List<PlanoResponse> planos = planoService.listarTodos();
-        return ResponseEntity.ok(planos);
+        return ResponseEntity.ok(planoService.listarTodos());
     }
 }

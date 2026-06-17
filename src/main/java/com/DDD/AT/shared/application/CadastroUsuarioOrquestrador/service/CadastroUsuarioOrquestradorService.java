@@ -19,7 +19,7 @@ public class CadastroUsuarioOrquestradorService {
 
     public UsuarioResponse cadastrarUsuarioComFavoritos(UsuarioRequest request) {
         UsuarioResponse novoUsuario = usuarioService.criarConta(request);
-        playlistService.criarPlaylistFavoritosParaUsuario(novoUsuario.getId());
+        playlistService.inicializarFavoritos(novoUsuario.getId());
         return novoUsuario;
     }
 }
