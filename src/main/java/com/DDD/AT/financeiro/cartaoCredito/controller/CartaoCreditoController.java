@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/financeiro/cartoes")
+@RequestMapping("/financeiro/cartoes")
 public class CartaoCreditoController {
 
     private final CartaoCreditoService cartaoCreditoService;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/financeiro/transacoes")
+@RequestMapping("/financeiro/transacoes")
 public class TransacaoController {
 
     private final TransacaoService transacaoService;

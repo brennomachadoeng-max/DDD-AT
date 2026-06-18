@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/streaming/playlists")
+@RequestMapping("/streaming/playlists")
 public class PlaylistController {
 
     private final PlaylistService playlistService;
@@ -20,11 +20,6 @@ public class PlaylistController {
     @PostMapping
     public ResponseEntity<PlaylistResponse> criarPlaylist(@RequestBody PlaylistRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playlistService.criarPlaylist(request));
-    }
-
-    @PostMapping("/usuarios/{usuarioId}/favoritos")
-    public ResponseEntity<PlaylistResponse> inicializarFavoritos(@PathVariable Long usuarioId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(playlistService.inicializarFavoritos(usuarioId));
     }
 
     @PostMapping("/{playlistId}/musicas/{musicaId}")
